@@ -1,67 +1,59 @@
-import sys
-import math
-try:
-    if len(sys.argv) > 1:
-        A = float(sys.argv[1])
-    else:
-        print('Введите коэффициент A:')
-        A = float(input())
-except ValueError:
-    print('Ошибка [ValueError]: коэффициент A должен быть числом')
-    sys.exit(1)
-try:
-    if len(sys.argv) > 2:
-        B = float(sys.argv[2])
-    else:
-        print('Введите коэффициент B:')
-        B = float(input())
-except ValueError:
-    print('Ошибка [ValueError]: коэффициент B должен быть числом')
-    sys.exit(1)
-try:
-    if len(sys.argv) > 3:
-        C = float(sys.argv[3])
-    else:
-        print('Введите коэффициент C:')
-        C = float(input())
-except ValueError:
-    print('Ошибка [ValueError]: коэффициент C должен быть числом')
-    sys.exit(1)
-if A == 0.0 and B == 0.0 and C == 0.0:
-    print('x может быть любым')
+while True:
+    try:
+        a = float(input("Введите A: "))
+        break
+    except ValueError:
+        print("Ошибка [ValueError]: введите число")
+while True:
+    try:
+        b = float(input("Введите B: "))
+        break
+    except ValueError:
+        print("Ошибка [ValueError]: введите число")
+while True:
+    try:
+        c = float(input("Введите C: "))
+        break
+    except ValueError:
+        print("Ошибка [ValueError]: введите число")
+if a == 0 and b == 0 and c == 0:
+    print("x может быть любым")
 else:
-    t_list = []
-    if A == 0.0:
-        if B != 0.0:
-            t_list.append(-C / B)
+    if a == 0:
+        if b != 0:
+            t = -c / b
+            if t < 0:
+                print("Нет корней")
+            elif t == 0:
+                print("x = 0")
+            else:
+                print("x =", t ** 0.5)
+                print("x =", -(t ** 0.5))
     else:
-        D = B * B - 4.0 * A * C
-        if D == 0.0:
-            t_list.append(-B / (2.0 * A))
-        elif D > 0.0:
-            sqrt_D = math.sqrt(D)
-            t_list.append((-B + sqrt_D) / (2.0 * A))
-            t_list.append((-B - sqrt_D) / (2.0 * A))
-    t_all = []
-    for t in t_list:
-        if t < 0.0:
-            continue
-        elif t == 0.0:
-            t_all.append(0.0)
+        D = b * b - 4 * a * c
+        print("D =", D)
+        if D < 0:
+            print("Нет корней")
+        elif D == 0:
+            t = -b / (2 * a)
+            if t < 0:
+                print("Нет корней")
+            elif t == 0:
+                print("x = 0")
+            else:
+                print("x =", t ** 0.5)
+                print("x =", -(t ** 0.5))
         else:
-            sqrt_t = math.sqrt(t)
-            t_all.append(sqrt_t)
-            t_all.append(-sqrt_t)
-    t_unique = sorted(set(t_all))
-    n = len(t_unique)
-    if n == 0:
-        print('Нет корней')
-    elif n == 1:
-        print('Один корень: {}'.format(t_unique[0]))
-    elif n == 2:
-        print('Два корня: {} и {}'.format(t_unique[0], t_unique[1]))
-    elif n == 3:
-        print('Три корня: {}, {} и {}'.format(t_unique[0], t_unique[1], t_unique[2]))
-    elif n == 4:
-        print('Четыре корня: {}, {}, {} и {}'.format(
-            t_unique[0], t_unique[1], t_unique[2], t_unique[3]))
+            t1 = (-b + D ** 0.5) / (2 * a)
+            t2 = (-b - D ** 0.5) / (2 * a)
+            
+            if t1 > 0:
+                print("x =", t1 ** 0.5)
+                print("x =", -(t1 ** 0.5))
+            elif t1 == 0:
+                print("x = 0")
+            if t2 > 0:
+                print("x =", t2 ** 0.5)
+                print("x =", -(t2 ** 0.5))
+            elif t2 == 0:
+                print("x = 0")
